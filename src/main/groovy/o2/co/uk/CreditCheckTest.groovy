@@ -31,8 +31,15 @@ class CreditCheckTest {
     ObjectMapper objectMapper = new ObjectMapper()
     static MultivaluedMap consumerMap = new MultivaluedHashMap()
     WebTarget target= ClientBuilder.newClient().target("")
-    String startDate = new SimpleDateFormat("yyyyMMdd").format(new Date())
+    String startDate = setDate(2014, 7, 12)
     String endDate = new SimpleDateFormat("yyyyMMdd").format(new Date())
+
+    String setDate(int year, int month, int date){
+        Calendar calendar = Calendar.getInstance()
+        calendar.set(year, month, date)
+        new SimpleDateFormat("yyyyMMdd").format(calendar.getTime())
+    }
+
     @Test
     void creditCheckStatusTest(){
         consumerMap.add("X-TouchPoint", "cfu")
@@ -66,12 +73,13 @@ class CreditCheckTest {
         }
         File file = new File("./orderDetails${new SimpleDateFormat("yyyyMMdd").format(new Date())}.csv")
         file.setText(stringBuilder.toString())
-
     }
 
     Object getRequest(WebTarget target,MultivaluedHashMap map, String path, boolean queryParam){
 
+
         target = target.path(path)
+        println "extracting order status from ${startDate} till ${endDate}"
         if(queryParam){
            target = target.queryParam("startDate", startDate).queryParam("endDate", endDate)
         }
