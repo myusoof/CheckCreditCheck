@@ -1,0 +1,26 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories{
+    mavenCentral()
+}
+
+
+dependencies{
+    jerseyVersion = "2.5.1"
+    jodaTime = 'joda-time:joda-time:2.0'
+    groovy = "org.codehaus.groovy:groovy-all:2.1.1"
+    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4"
+    compile "org.glassfish.jersey.core:jersey-client:${jerseyVersion}"
+    compile "org.glassfish.jersey.media:jersey-media-multipart:${jerseyVersion}"
+    compile jodaTime, groovy, "junit:junit:4.11"
+}
+
+test{
+    System.getProperty("host", "http://localhost:8080")
+    System.getProperty("startDate", new SimpleDateFormat("yyyyMMdd").format(new Date()) )
+}
