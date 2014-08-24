@@ -79,8 +79,9 @@ class CreditCheckTest {
 
 
         target = target.path(path)
-        println "extracting order status from ${startDate} till ${endDate}"
+
         if(queryParam){
+            println "extracting order status from ${startDate} till ${endDate}"
            target = target.queryParam("startDate", startDate).queryParam("endDate", endDate)
         }
         String response = target.request(MediaType.APPLICATION_JSON_TYPE).headers(map).get(String.class)
