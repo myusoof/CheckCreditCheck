@@ -71,7 +71,7 @@ class CreditCheckTest {
             stringBuilder.append("${internalOrderId}, ${journeyType}, ${createdTime}, ${status}, ${deviceDescription}, ${deviceSKU}, ${creditCheckStatusCondition}, ${creditCheckStatus}, ${contactNumber}, ${creditVetNumber}, ${creditScore}, ${lastCreditCheckDate}, ${referralReason}")
             stringBuilder.append("\n")
         }
-        File file = new File("/media/yusoof/ubuntuextended/projects/CreditCheckStatus/orderDetails${new SimpleDateFormat("yyyyMMdd").format(new Date())}.csv")
+        File file = new File("./orderDetails${new SimpleDateFormat("yyyyMMdd").format(new Date())}.csv")
         file.setText(stringBuilder.toString())
     }
 
