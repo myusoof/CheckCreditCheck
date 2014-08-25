@@ -19,8 +19,3 @@ dependencies{
     compile "org.glassfish.jersey.media:jersey-media-multipart:${jerseyVersion}"
     compile jodaTime, groovy, "junit:junit:4.11"
 }
-
-test{
-    System.getProperty("host", "http://localhost:8080")
-    System.getProperty("startDate", new SimpleDateFormat("yyyyMMdd").format(new Date()) )
-}

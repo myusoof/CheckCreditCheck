@@ -1,4 +1,4 @@
-package o2.co.uk
+package uk
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonParser

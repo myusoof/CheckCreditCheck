@@ -1,2 +1,0 @@
-InternalOrderId, journeyType, createdTime, status, devicedescription, deviceSKU,creditCheckStatusCondition, creditCheckStatus, contactNumber, creditVetNumber, creditScore, lastCreditCheckDate, referralReason
-53fa4bb131da8f26b12f8f1d, acquisition, 2014-08-24T21:31:46.760+01:00, Expired, Apple 5 S Indigo, 3LCABB, null, null, null, null, null, null, null
