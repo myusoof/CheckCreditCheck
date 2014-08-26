@@ -48,7 +48,7 @@ class CreditCheckTest {
         consumerMap.add("X-IdType", "IdentityUID")
         consumerMap.add("X-Channel", "ConsumerUpgrade")
         consumerMap.add("X-UserId", "ID-000100")
-        stringBuilderHeader.append("InternalOrderId, msisdn, portalId, isPreOrder, journeyType, createdTime, status, devicedescription, deviceSKU,tariffDescription, tariffPID, creditCheckStatusCondition, creditCheckStatus, contactNumber, creditVetNumber, creditScore, lastCreditCheckDate, referralReason")
+        stringBuilderHeader.append("InternalOrderId^msisdn^portalId^isPreOrder^journeyType^createdTime^status^devicedescription^deviceSKU^tariffDescription^tariffPID^creditCheckStatusCondition^creditCheckStatus^contactNumber^creditVetNumber^creditScore^lastCreditCheckDate^referralReason")
         stringBuilderHeader.append("\n")
         File file = new File("./orderDetails${new SimpleDateFormat("yyyyMMdd").format(new Date())}.csv")
         FileWriter fileWriter = new FileWriter(file.name,true);
@@ -99,7 +99,7 @@ class CreditCheckTest {
             }catch(Exception e){
                println "Not able to process ${internalOrderId}"
             }finally{
-                stringBuilder.append("${internalOrderId}, ${msisdn}, ${portalId}, ${isPreOrder}, ${journeyType}, ${createdTime}, ${status}, ${deviceDescription}, ${deviceSKU}, ${tariffDescription}, ${tariffPID}, ${creditCheckStatusCondition}, ${creditCheckStatus}, ${contactNumber}, ${creditVetNumber}, ${creditScore}, ${lastCreditCheckDate}, ${referralReason}")
+                stringBuilder.append("${internalOrderId}^${msisdn}^${portalId}^${isPreOrder}^${journeyType}^${createdTime}^${status}^${deviceDescription}^${deviceSKU}^${tariffDescription}^${tariffPID}^${creditCheckStatusCondition}^${creditCheckStatus}^${contactNumber}^${creditVetNumber}^${creditScore}^${lastCreditCheckDate}^${referralReason}")
                 stringBuilder.append("\n")
                 fileWriter.write(stringBuilder.toString())
                 stringBuilder.setLength(0)
