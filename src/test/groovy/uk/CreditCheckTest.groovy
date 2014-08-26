@@ -31,7 +31,7 @@ class CreditCheckTest {
     ObjectMapper objectMapper = new ObjectMapper()
     static MultivaluedMap consumerMap = new MultivaluedHashMap()
     WebTarget target= ClientBuilder.newClient().target("")
-    String startDate = setDate(2014, 7, 12)
+    String startDate = new SimpleDateFormat("yyyyMMdd").format(new Date())
     String endDate = new SimpleDateFormat("yyyyMMdd").format(new Date())
 
     String setDate(int year, int month, int date){
@@ -49,17 +49,19 @@ class CreditCheckTest {
         consumerMap.add("X-UserId", "ID-000100")
         stringBuilder.append("InternalOrderId, journeyType, createdTime, status, devicedescription, deviceSKU,creditCheckStatusCondition, creditCheckStatus, contactNumber, creditVetNumber, creditScore, lastCreditCheckDate, referralReason")
         stringBuilder.append("\n")
-        Object response = getRequest(target,consumerMap, "http://localhost:8080/orderService/v1/reports/orders", true)
+        Object response = getRequest(target,consumerMap, "https://prodcat.o2.co.uk/orderService/reports/orders", true)
 
 
         response.each {
-            Object orderDetail = getRequest(target, consumerMap, it, false)
-            String internalOrderId = orderDetail.id
-            String journeyType = orderDetail.journeyType
-            String createdTime = orderDetail.createdTime
-            String status = orderDetail.status
-            String deviceDescription = orderDetail.lineItems.find{it.type == 'device'}.description
-            String deviceSKU = orderDetail.lineItems.find{it.type == 'device'}.skuOrPid
+            String orderUrl = it.toString().replaceFirst("http.*8080", "https://prodcat.o2.co.uk")
+            println "Currently processing ${orderUrl}"
+            Object orderDetail = getRequest(target, consumerMap, orderUrl, false)
+            String internalOrderId = orderDetail?.id
+            String journeyType = orderDetail?.journeyType
+            String createdTime = orderDetail?.createdTime
+            String status = orderDetail?.status
+            String deviceDescription = orderDetail?.lineItems?.find{it.type == 'device'}?.description
+            String deviceSKU = orderDetail?.lineItems?.find{it.type == 'device'}?.skuOrPid
             String creditCheckStatusCondition = orderDetail?.requirements?.creditCheckDetails?.met?:null
             String creditCheckStatus = orderDetail.requirements?.creditCheckDetails?.creditCheckStatus?:null
             String contactNumber= orderDetail?.requirements?.creditCheckDetails?.contactNumber?:null

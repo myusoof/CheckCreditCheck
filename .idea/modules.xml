@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CreditCheckStatus.iml" filepath="$PROJECT_DIR$/CreditCheckStatus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CheckCreditCheck.iml" filepath="$PROJECT_DIR$/CheckCreditCheck.iml" />
     </modules>
   </component>
 </project>
